@@ -27,8 +27,9 @@ class KotlinUnitTest {
      * example 2: named arguments
      * Using named arguments join the string with a " " separator and a ! postfix
      */
-    private fun joinOptions(options: Collection<String>) = options.joinToString(TODO())
-
+    private fun joinOptions(options: Collection<String>) = options.joinToString(
+            separator="",
+            postfix = "!")
     @Test
     fun example_2_test() {
         assertEquals("Kotlin is fun!", joinOptions(listOf("Kotlin", "is", "fun")))
@@ -41,7 +42,7 @@ class KotlinUnitTest {
      * Add default month 1
      * Add default year 2000
      */
-    private fun createDate(day: Int = TODO(), month: Int = TODO(), year: Int = TODO()) = "$month/$day/$year"
+    private fun createDate(day: Int = 1, month: Int = 1, year: Int = 2000) = "$month/$day/$year"
 
     @Test
     fun example_3_test() {
@@ -223,7 +224,13 @@ class KotlinUnitTest {
 
     fun getSortedListWithObjectNotation(item1: Int, item2: Int, item3: Int): List<Int> {
         val arrayList = listOf(item1, item2, item3)
-        Collections.sort(arrayList, TODO())
+        Collections.sort(arrayList, object: Comparator<Int> {
+            override fun compare(x: Int, y: Int): Int {
+                return y - x
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
         return arrayList
     }
 
@@ -242,6 +249,7 @@ class KotlinUnitTest {
         val arrayList = listOf(item1, item2, item3)
         Collections.sort(arrayList, TODO())
         return arrayList
+
     }
 
     @Test
